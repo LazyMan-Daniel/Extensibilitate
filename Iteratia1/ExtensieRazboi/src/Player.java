@@ -12,8 +12,21 @@ public class Player {
     private int numberOfPutCards = 0;
     private int currentValueToBePut;
 
-    Player(int nrCartiPlayer, Deck carti) {
+    Player(int nrCartiPlayer, Deck carti, int id) {
         manaJucator=new PlayerHand(nrCartiPlayer, carti);
+        this.id=id;
+    }
+
+    public void addCard(Card carte){
+        manaJucator.addCard(carte);
+    }
+
+    public int getNrCards(){
+        return manaJucator.nrCarti();
+    }
+
+    public Card getMana(){
+        return  manaJucator.placeCard();
     }
 
     public String getName() {

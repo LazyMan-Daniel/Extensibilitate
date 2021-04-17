@@ -20,6 +20,10 @@ public class PlayerHand {
 
     }
 
+    public int nrCarti(){
+        return playersCards.size();
+    }
+
     public void setInitialNumber(int initialNumber) {
         this.initialNumber = initialNumber;
     }
@@ -60,13 +64,28 @@ public class PlayerHand {
 
     }
 
-    /*public void drawCard(){  // trebuie adaptata functia in cazul in care jucatorul castiga mai multe carti, nu e random
-        Random rnd=new Random();
+    public void addCard(Card carte){
+        playersCards.add(carte);
+    }
+
+
+    public Card placeCard(){  // trebuie adaptata functia in cazul in care jucatorul castiga mai multe carti, nu e random
+        if(playersCards.size()<1) {
+            Card carte = playersCards.get(0);
+            playersCards.remove(0);
+
+            return carte;
+        }
+        else throw new IndexOutOfBoundsException("Nu merge");
+
+       /* Random rnd=new Random();
         int index = rnd.nextInt(noOfCards);
         playersCards.add(deck.get(index)); //adauga in mana jucatorului cartea de pe poz index din pachet
         noOfCards--;
         deck.remove(index);
-    }*/
+        */
+    }
+
 
     public void putCard(int index){ //fiecare jucator are un deck diferit, trebuie revizuit
         //ar trebui sa puna o carte jos in functie de reguli

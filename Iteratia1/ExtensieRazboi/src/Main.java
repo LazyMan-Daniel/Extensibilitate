@@ -27,6 +27,7 @@ public class Main {
 
     public static void main(String[] args) {
         GameRemastered g1=new GameRemastered(4);
+        g1.playGame();
     }
 
 }

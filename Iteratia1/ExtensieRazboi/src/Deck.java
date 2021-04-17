@@ -5,6 +5,7 @@ import java.util.Random;
 public class Deck {
     private List<Card> deck;
     private int cardsLeft;
+
     public Deck(){
         deck=new ArrayList<>();
         for(int i=2;i<=14;i++){
@@ -14,10 +15,25 @@ public class Deck {
         }
         cardsLeft=52;
     }
+
+    public int getNumber(int index){
+        return deck.get(index).getNumber();
+    }
+
     public Deck(List<Card> cardList){
         deck=new ArrayList<>();
         deck.addAll(cardList);
         cardsLeft=cardList.size();
+    }
+
+    public void addCard(Card carte){
+        deck.add(carte);
+        cardsLeft++;
+    }
+
+    public Deck(String emtpy){
+        deck=new ArrayList<>();
+        cardsLeft=0;
     }
 
     public List<Card> getDeck() {
