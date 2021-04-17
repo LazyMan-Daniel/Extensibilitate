@@ -79,7 +79,7 @@ public class PlayerHand {
 
 
     public Card placeCard(){  // trebuie adaptata functia in cazul in care jucatorul castiga mai multe carti, nu e random
-        if(playersCards.size()<1) {
+        if(playersCards.size()>0) {
             try {
                 Card carte = playersCards.get(0);
                 playersCards.remove(0);

@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.ConcurrentModificationException;
 import java.util.List;
 import java.util.Map;
 
@@ -27,6 +28,8 @@ public class GameRemastered {
             jucatori.add(new Player(nrCartiPlayer,carti,id));
             id++;
         }
+
+
     }
 
     public void winRound(int valMax){
@@ -159,8 +162,12 @@ public class GameRemastered {
         int[] frecventa = new int[15];
 
         for(int i=0;i<playedCards.getLength();i++){
-            frecventa[playedCards.getIndexValue(i)]++;
-        }
+            try {
+                frecventa[playedCards.getIndexValue(i)]++;
+            }catch(ArrayIndexOutOfBoundsException e){
+                System.out.println("Eroare la frecventa");
+            }
+            }
 
         int valWarMax=0,nrJuc=0;
         for(int i=14;i>1;i--){
@@ -218,10 +225,18 @@ public class GameRemastered {
             if(nrJuc==1) winRound(valMax);
             else war(valMax);
 
+            try{
             for(Player i : jucatori){
+
                 if(i.getNrCards()==0){
-                    jucatori.remove(i);
-                }
+                    try {
+                        jucatori.remove(i);
+                    }catch(ConcurrentModificationException e){
+                        System.out.println("Eroare for");
+                    }
+                    }
+            } }catch(ConcurrentModificationException e){
+                System.out.println("Eroare la for");
             }
 
             if(jucatori.size()==1){
