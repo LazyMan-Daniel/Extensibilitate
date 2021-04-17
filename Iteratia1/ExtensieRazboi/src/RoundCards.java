@@ -13,6 +13,7 @@ class RoundCards {
     public void putCard(Card carte, int id){
         cartiJos.add(carte);
         playerID.add(id);
+        //System.out.println("Introducere reusita" + id +"   "+ carte.getNumber());
     }
 
     public void putCard(RoundCards aux){
@@ -39,11 +40,17 @@ class RoundCards {
         return playerID.get(index);
     }
 
+
+
     public int getIndexValue(int index){
+        //System.out.println(cartiJos.get(index).getNumber()+ "  numar");
         try{
         return cartiJos.get(index).getNumber();
-    }catch(NullPointerException e){}
-        return -1;
+    }catch(NullPointerException e){
+           // System.out.println(cartiJos.get(index).getNumber()+" numar carti jos");
+            return -1;
+        }
+
     }
 
     public int size(){

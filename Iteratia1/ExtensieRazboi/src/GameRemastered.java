@@ -11,14 +11,18 @@ public class GameRemastered {
     private int nrCartiPlayer;
     private boolean existaPrizonier;
     private Deck carti;
+    private Deck cartiCastigator;
     private RoundCards cartiMasa;
     private boolean notOver;
+    List<Player> jucatoriRazboi;
 
     public GameRemastered(int nrPlayers){
         int id=0;
         this.nrCartiPlayer=52/nrPlayers;
         this.existaPrizonier=false;
+        jucatoriRazboi=new ArrayList<>();
         carti=new Deck();
+        cartiCastigator=new Deck();
         notOver=true;
         carti.shuffleDeck();
         jucatori=new ArrayList<>();
@@ -26,6 +30,7 @@ public class GameRemastered {
         for(int i=0;i<nrPlayers;i++){
 
             jucatori.add(new Player(nrCartiPlayer,carti,id));
+           // System.out.println(jucatori.toString());
             id++;
         }
 
@@ -52,7 +57,7 @@ public class GameRemastered {
             if(i.getId()==winner){
                 for(int j=0;j<cartiMasa.getLength();j++){
                     i.addCard(cartiMasa.getCard(j));
-                    cartiMasa.remove(j);
+                    cartiMasa.remove(j); j--;
                 }
             }
         }
@@ -61,6 +66,7 @@ public class GameRemastered {
 
     public void winRound(int valMax,RoundCards cartiMasa,List<Player>jucatori){
         int winner=-1;
+        System.out.println("WAAAARUAAWG");
         for(int i=0;i<cartiMasa.getLength();i++){
             if(cartiMasa.getIndexValue(i)==valMax){
                 winner=cartiMasa.getId(i);
@@ -72,30 +78,43 @@ public class GameRemastered {
             if(i.getId()==winner){
                 for(int j=0;j<cartiMasa.getLength();j++){
                     i.addCard(cartiMasa.getCard(j));
-                    cartiMasa.remove(j);
+                    cartiMasa.remove(j); j--;
                 }
                 for(int j=0;j<this.cartiMasa.getLength();j++){
                     i.addCard(this.cartiMasa.getCard(j));
-                    this.cartiMasa.remove(j);
+                    this.cartiMasa.remove(j); j--;
                 }
             }
         }
 
     }
 
-    public void war(int valMax){
+    public void war(int valMax, int nrJuc){
 
-        //cei x jucatori trebuie sa joaca o runda noua
-        //vor pune valMax carti jos, care vor fi adaugate in cartiMasa
-        //ultimele x carti puse pe masa vor fi folosite in metoda de castig
-        List<Player> jucatoriRazboi = new ArrayList<>();
-        int[] save= new int[jucatori.size()];
+        /**
+         * war: x jucatori cu element maxim n
+         *
+         *   jucatorul Pi- are >=n : va pune n carti
+         *               - are 0< nr carti <n: va pune nr carti
+         *               - are 0 carti: cartea de varf va ramane valabila
+         */
+
+        //jucatoriRazboi
+
+        int[] save= new int[jucatori.size()+1];
+        for(int i=0;i< jucatori.size();i++) save[i]=-5;
         int n=0;
         /**
          * salvam id-ul fiecarui player care ia parte la razboi in vectorul save[] ca sa-i putem gasi mai usor pe fiecare
          * in parte
          * */
+
+        for(int i=0;i<cartiMasa.getLength()-nrJuc;i++){
+            cartiCastigator.addCard(cartiMasa.getCard(i));
+        }
+
         for(int i=0;i<cartiMasa.getLength();i++){
+            System.out.println("101 "+ cartiMasa.getLength());
             if(cartiMasa.getIndexValue(i)==valMax){
                 save[n]=cartiMasa.getId(i);
                 n++;
@@ -148,8 +167,9 @@ public class GameRemastered {
                     cartiMasa.putCard(i.getMana(), i.getId());
                 }
                 playedCards.putCard(i.getMana(), i.getId());
-            } else {
-                for (int j = 0; j < i.getManaJucator().getCards().size() - 1; ++j) {
+            }
+            else {
+                for (int j = 0; j < i.getManaJucator().getCards().size() -1; ++j) {
                     cartiMasa.putCard(i.getMana(), i.getId());
                 }
                 playedCards.putCard(i.getMana(), i.getId());
@@ -160,12 +180,13 @@ public class GameRemastered {
         /**folosim un vector de frecvecventa pentru a determina cartea maxima jucata*/
 
         int[] frecventa = new int[15];
+        for(int i=0;i<15;i++) frecventa[i]=0;
 
         for(int i=0;i<playedCards.getLength();i++){
             try {
                 frecventa[playedCards.getIndexValue(i)]++;
             }catch(ArrayIndexOutOfBoundsException e){
-                System.out.println("Eroare la frecventa");
+                System.out.println("Eroare la frecventa line 169");
             }
             }
 
@@ -182,14 +203,32 @@ public class GameRemastered {
 
         if(nrJuc==1) winRound(valMax,playedCards,jucatoriRazboi);
         else{
+            System.out.println("War nr2");
             cartiMasa.putCard(playedCards);
             try {
-                war(valWarMax);
+                war(valWarMax,2);
             }catch(StackOverflowError e){
                 System.out.println("Eroare la war");
             }
         }
     }
+
+
+    public void scoatePierzatorii(){
+        /*for(Player i:jucatori){
+            System.out.println("Nr Carti "+ i.getNrCards());
+
+        } */
+
+        for(int i=0;i< jucatori.size();i++){
+            if(jucatori.get(i).getNrCards()==0) {
+                jucatori.remove(i);
+                i--;
+            }
+        }
+
+    }
+
 
     public void playSimple(){
 
@@ -198,18 +237,29 @@ public class GameRemastered {
         while(notOver){//verificăm dacă un joc s-a terminat
 
            for(Player i : jucatori){  //jucatorii pun cartile pe masa in pachetul cartiMasa
-               cartiMasa.putCard(i.getMana(),i.getId());
+
+               if(i.getNrCards()==0){
+                   jucatori.remove(i);
+               }
+               else {
+                   cartiMasa.putCard(i.getMana(), i.getId());
+
+               }
            }
 
-           int[] frecventa=new int[15]; //initializam frecventa cartilor
-           for(int i=0;i<15;i++){
+           int[] frecventa=new int[16]; //initializam frecventa cartilor
+           for(int i=0;i<16;i++){
                frecventa[i]=0;
            }
 
             for(int i=0;i<cartiMasa.getLength();i++){
+
                 try {
                     frecventa[cartiMasa.getIndexValue(i)]++;
-                }catch(ArrayIndexOutOfBoundsException e){}
+                }catch(ArrayIndexOutOfBoundsException e){
+                    System.out.println(cartiMasa.getIndexValue(i)+ " line214");
+                    System.out.println("Eroare linie 215");
+                }
                 }
 
 
@@ -222,9 +272,28 @@ public class GameRemastered {
                 }
             }
 
-            if(nrJuc==1) winRound(valMax);
-            else war(valMax);
+            if(nrJuc==1) {
+                winRound(valMax);
+                System.out.println("[OK] Castigator line240");
+                for(Player i: jucatori )
+                System.out.println(i.toString());
+            }
 
+
+            else {
+                System.out.println("[OK]Lupta line243");
+                war(valMax,nrJuc);
+
+
+                for(Player i: jucatori )
+                System.out.println(i.toString());
+            }
+
+
+            System.out.println("[OK]Finalizeaza line248");
+
+
+            /*
             try{
             for(Player i : jucatori){
 
@@ -232,19 +301,19 @@ public class GameRemastered {
                     try {
                         jucatori.remove(i);
                     }catch(ConcurrentModificationException e){
-                        System.out.println("Eroare for");
+                        System.out.println("Eroare for line 247");
                     }
                     }
             } }catch(ConcurrentModificationException e){
-                System.out.println("Eroare la for");
-            }
+                System.out.println("Eroare la for line 251");
+            } */
 
             if(jucatori.size()==1){
                 notOver=false;
                 System.out.println("Jucatorul " + jucatori.get(0).getId() + " a castigat" );
             }
 
-
+            scoatePierzatorii();
         }
 
 

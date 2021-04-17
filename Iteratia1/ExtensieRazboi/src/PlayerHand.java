@@ -24,6 +24,7 @@ public class PlayerHand {
     }
 
     public int nrCarti(){
+
         return playersCards.size();
     }
 
@@ -31,9 +32,6 @@ public class PlayerHand {
         this.initialNumber = initialNumber;
     }
 
-    public int getInitialNumber() {
-        return initialNumber;
-    }
 
     public boolean getTurn() {
         return isTurn;
@@ -53,12 +51,15 @@ public class PlayerHand {
     }*/
 
     public void drawInitialCards(Deck deck){ //impartirea cartilor la inceput
-        int initialNumber = getInitialNumber();
+
         playersCards = new ArrayList<>();
         for(int i=0; i<initialNumber; i++) {
          try{
             playersCards.add(deck.extractOneCard());
         }catch(IndexOutOfBoundsException e){}
+
+
+         /*
             Random rnd=new Random();
             int index = rnd.nextInt(noOfCards);
             try {
@@ -67,7 +68,7 @@ public class PlayerHand {
             noOfCards--;
             try {
                 deck.remove(index);
-            } catch(IndexOutOfBoundsException e){}
+            } catch(IndexOutOfBoundsException e){}*/
         }
 
 
@@ -103,7 +104,7 @@ public class PlayerHand {
         Card chosenCard = playersCards.get(index);
         int color = chosenCard.getColor();
         int number = chosenCard.getNumber();
-        System.out.println("Number= " + number + ",  culoare= " + color);
+        //System.out.println("Number= " + number + ",  culoare= " + color);
         //apeleaza functia de reguli cu number si color ca parametri; daca valideaza ca fiind corect pune cartea jos
         //altfel trimite un mesaj ca trebuie sa alegem alta carte
 
@@ -111,7 +112,7 @@ public class PlayerHand {
         noOfCards++;
         playersCards.remove(index);
 
-        System.out.println("Number of cards: " + playersCards.size());
+       // System.out.println("Number of cards: " + playersCards.size());
 
     }
 
