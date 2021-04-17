@@ -3,7 +3,7 @@ import java.util.List;
 
 class RoundCards {
     private List<Card> cartiJos;
-    private List<Integer> playerID;
+    private List<Integer> playerID; // 0,1,2
 
     RoundCards(){
         cartiJos = new ArrayList<>();
@@ -14,6 +14,10 @@ class RoundCards {
         cartiJos.add(carte);
         playerID.add(id);
         //System.out.println("Introducere reusita" + id +"   "+ carte.getNumber());
+    }
+
+    public Card getById(int id){
+        return playerID.get(id);
     }
 
     public void putCard(RoundCards aux){
@@ -39,6 +43,7 @@ class RoundCards {
     public int getId(int index){
         return playerID.get(index);
     }
+
 
 
 

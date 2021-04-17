@@ -89,7 +89,7 @@ public class GameRemastered {
 
     }
 
-    public void war(int valMax, int nrJuc){
+    public void war(RoundCards ultimeleCarti, int valMax, int nrJuc){
 
         /**
          * war: x jucatori cu element maxim n
@@ -109,17 +109,18 @@ public class GameRemastered {
          * in parte
          * */
 
-        for(int i=0;i<cartiMasa.getLength()-nrJuc;i++){
-            cartiCastigator.addCard(cartiMasa.getCard(i));
-        }
+
 
         for(int i=0;i<cartiMasa.getLength();i++){
-            System.out.println("101 "+ cartiMasa.getLength());
+           // System.out.println("101 "+ cartiMasa.getLength());
             if(cartiMasa.getIndexValue(i)==valMax){
                 save[n]=cartiMasa.getId(i);
                 n++;
             }
         }
+
+        //ultimeleCarti.eliberare();
+
         /**extragem playerii care iau parte la razboi*/
         for(Player i : jucatori){
             for(int j=0;j<n;++j){
@@ -128,6 +129,9 @@ public class GameRemastered {
                 }
             }
         }
+
+
+
         RoundCards playedCards = new RoundCards();
         int cardsDown;
 
@@ -161,23 +165,30 @@ public class GameRemastered {
          * */
 
 
+        RoundCards ultimeleCarti2 = new RoundCards();
         for(Player i : jucatoriRazboi) {
             if (i.getManaJucator().getCards().size() >= cardsDown) {
                 for (int j = 0; j < cardsDown - 1; ++j) {
                     cartiMasa.putCard(i.getMana(), i.getId());
                 }
-                playedCards.putCard(i.getMana(), i.getId());
+                ultimeleCarti2.putCard(i.getMana(), i.getId());
+                cartiMasa.putCard(i.getMana(), i.getId());
             }
-            else {
+            else if(i.getManaJucator().getCards().size() == 0){
+                ultimeleCarti2.putCard();
+                //ultimileCarti->UltimileCarti2
+            }
+            else
                 for (int j = 0; j < i.getManaJucator().getCards().size() -1; ++j) {
                     cartiMasa.putCard(i.getMana(), i.getId());
                 }
-                playedCards.putCard(i.getMana(), i.getId());
-            }
+            ultimeleCarti2.putCard(i.getMana(), i.getId());
+            cartiMasa.putCard(i.getMana(), i.getId());
         }
+    }
 
 
-        /**folosim un vector de frecvecventa pentru a determina cartea maxima jucata*/
+    /**folosim un vector de frecvecventa pentru a determina cartea maxima jucata*/
 
         int[] frecventa = new int[15];
         for(int i=0;i<15;i++) frecventa[i]=0;
@@ -190,7 +201,7 @@ public class GameRemastered {
             }
             }
 
-        int valWarMax=0,nrJuc=0;
+        int valWarMax=0;
         for(int i=14;i>1;i--){
             if(frecventa[i]!=0){
                 valWarMax=i;
@@ -206,7 +217,8 @@ public class GameRemastered {
             System.out.println("War nr2");
             cartiMasa.putCard(playedCards);
             try {
-                war(valWarMax,2);
+
+                war(ultimeleCarti,valWarMax,2);
             }catch(StackOverflowError e){
                 System.out.println("Eroare la war");
             }
@@ -282,7 +294,9 @@ public class GameRemastered {
 
             else {
                 System.out.println("[OK]Lupta line243");
-                war(valMax,nrJuc);
+                RoundCards deTrimis= new RoundCards();
+                deTrimis=cartiMasa;
+                war(deTrimis,valMax,nrJuc);
 
 
                 for(Player i: jucatori )
