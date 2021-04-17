@@ -176,9 +176,14 @@ public class GameRemastered {
         if(nrJuc==1) winRound(valMax,playedCards,jucatoriRazboi);
         else{
             cartiMasa.putCard(playedCards);
-            war(valWarMax);
+            try {
+                war(valWarMax);
+            }catch(StackOverflowError e){
+                System.out.println("Eroare la war");
+            }
         }
     }
+
     public void playSimple(){
 
 
@@ -195,8 +200,10 @@ public class GameRemastered {
            }
 
             for(int i=0;i<cartiMasa.getLength();i++){
-                frecventa[cartiMasa.getIndexValue(i)]++;
-            }
+                try {
+                    frecventa[cartiMasa.getIndexValue(i)]++;
+                }catch(ArrayIndexOutOfBoundsException e){}
+                }
 
 
             int valMax=0,nrJuc=0;

@@ -40,10 +40,16 @@ class RoundCards {
     }
 
     public int getIndexValue(int index){
+        try{
         return cartiJos.get(index).getNumber();
+    }catch(NullPointerException e){}
+        return -1;
     }
 
     public int size(){
+        try{
         return cartiJos.size();
+    }catch(StackOverflowError e){}
+        return 0;
     }
 }

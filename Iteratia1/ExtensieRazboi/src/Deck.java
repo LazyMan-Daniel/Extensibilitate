@@ -87,10 +87,12 @@ public class Deck {
 
     public Card extractOneCard(){
         if(cardsLeft>0){
+            try{
             Card card=deck.get(0);
             deck.remove(0);
             this.cardsLeft--;
-            return card;
+            return card;}
+            catch(IndexOutOfBoundsException e){}
         }else{
             System.out.println("Deck empty");
         }
@@ -109,7 +111,9 @@ public class Deck {
     }
 
     public void remove(int index){
-        deck.remove(index);
+        try {
+            deck.remove(index);
+        } catch(IndexOutOfBoundsException e){}
     }
 
     public Card get(int index){

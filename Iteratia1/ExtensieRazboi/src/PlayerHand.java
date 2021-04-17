@@ -55,13 +55,19 @@ public class PlayerHand {
     public void drawInitialCards(){ //impartirea cartilor la inceput
         int initialNumber = getInitialNumber();
         playersCards = new ArrayList<>();
-        for(int i=0; i<initialNumber; i++){
+        for(int i=0; i<initialNumber; i++) {
+         try{
             playersCards.add(deck.extractOneCard());
+        }catch(IndexOutOfBoundsException e){}
             Random rnd=new Random();
             int index = rnd.nextInt(noOfCards);
-            playersCards.add(deck.get(index)); //adauga in mana jucatorului cartea de pe poz index din pachet
+            try {
+                playersCards.add(deck.get(index)); //adauga in mana jucatorului cartea de pe poz index din pachet
+            } catch(IndexOutOfBoundsException e){}
             noOfCards--;
-            deck.remove(index);
+            try {
+                deck.remove(index);
+            } catch(IndexOutOfBoundsException e){}
         }
 
 
@@ -74,12 +80,14 @@ public class PlayerHand {
 
     public Card placeCard(){  // trebuie adaptata functia in cazul in care jucatorul castiga mai multe carti, nu e random
         if(playersCards.size()<1) {
-            Card carte = playersCards.get(0);
-            playersCards.remove(0);
+            try {
+                Card carte = playersCards.get(0);
+                playersCards.remove(0);
 
-            return carte;
+                return carte;
+            }catch(IndexOutOfBoundsException e){}
         }
-        else throw new IndexOutOfBoundsException("Nu merge");
+        return null;
 
        /* Random rnd=new Random();
         int index = rnd.nextInt(noOfCards);
