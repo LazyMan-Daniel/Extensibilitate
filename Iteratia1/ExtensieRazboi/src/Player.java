@@ -2,7 +2,7 @@ public class Player {
     private String name;
     private int id, index;
     private boolean isOutOfTheGame = false;
-    private int cards[] = new int[256];
+    private PlayerHand manaJucator;
     private int cardColors[] = new int[256];
     private boolean isCardPutOnTheTable[][] = new boolean[256][256];
     private int currentNumberOfCards;
@@ -12,7 +12,8 @@ public class Player {
     private int numberOfPutCards = 0;
     private int currentValueToBePut;
 
-    Player() {
+    Player(int nrCartiPlayer, Deck carti) {
+        manaJucator=new PlayerHand(nrCartiPlayer, carti);
     }
 
     public String getName() {
@@ -46,7 +47,7 @@ public class Player {
     public void setOutOfTheGame(boolean outOfTheGame) {
         isOutOfTheGame = outOfTheGame;
     }
-
+/*
     public int[] getCards() {
         return cards;
     }
@@ -133,6 +134,6 @@ public class Player {
 
     public void setCurrentValueToBePut(int currentValueToBePut) {
         this.currentValueToBePut = currentValueToBePut;
-    }
+    }*/
 
 }

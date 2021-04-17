@@ -4,12 +4,21 @@ import java.util.Random;
 
 public class PlayerHand {
 
-    private List<Card> deck;
+    private Deck deck;
     private int noOfCards = 52; //carti ramase in pachet
     private int initialNumber; //numarul de carti pe care le primeste jucatorul la inceput
     private List<Card> playersCards; //cartile din mana jucatorului
     private boolean isTurn; //true cand e randul jucatorului
+    private Card prisoner;
 
+    public PlayerHand(int initialNumber, Deck carti) {
+        this.initialNumber = initialNumber;
+        deck=carti;
+        drawInitialCards();
+
+           // System.out.println(playersCards);
+
+    }
 
     public void setInitialNumber(int initialNumber) {
         this.initialNumber = initialNumber;
@@ -27,36 +36,39 @@ public class PlayerHand {
         isTurn = true;
     }
 
-    public void makeDeck(){
+    /*public void makeDeck(){
         deck=new ArrayList<>();
         for(int i=2;i<=14;i++) {
             for (int j = 1; j <= 4; j++) {
                 deck.add(new Card(i, j));
             }
         }
-    }
+    }*/
 
     public void drawInitialCards(){ //impartirea cartilor la inceput
         int initialNumber = getInitialNumber();
         playersCards = new ArrayList<>();
         for(int i=0; i<initialNumber; i++){
-            Random rnd=new Random();
+            playersCards.add(deck.extractOneCard());
+            /* Random rnd=new Random();
             int index = rnd.nextInt(noOfCards);
             playersCards.add(deck.get(index)); //adauga in mana jucatorului cartea de pe poz index din pachet
             noOfCards--;
-            deck.remove(index);
+            deck.remove(index); */
         }
+
+
     }
 
-    public void drawCard(){
+    /*public void drawCard(){  // trebuie adaptata functia in cazul in care jucatorul castiga mai multe carti, nu e random
         Random rnd=new Random();
         int index = rnd.nextInt(noOfCards);
         playersCards.add(deck.get(index)); //adauga in mana jucatorului cartea de pe poz index din pachet
         noOfCards--;
         deck.remove(index);
-    }
+    }*/
 
-    public void putCard(int index){
+    public void putCard(int index){ //fiecare jucator are un deck diferit, trebuie revizuit
         //ar trebui sa puna o carte jos in functie de reguli
         Card chosenCard = playersCards.get(index);
         int color = chosenCard.getColor();
@@ -65,7 +77,7 @@ public class PlayerHand {
         //apeleaza functia de reguli cu number si color ca parametri; daca valideaza ca fiind corect pune cartea jos
         //altfel trimite un mesaj ca trebuie sa alegem alta carte
 
-        deck.add(chosenCard);
+        //deck.add(chosenCard);
         noOfCards++;
         playersCards.remove(index);
 

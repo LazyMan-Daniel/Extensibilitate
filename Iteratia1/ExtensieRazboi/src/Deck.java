@@ -67,6 +67,8 @@ public class Deck {
         setDeck(shufled);
 
     }
+
+
     public Card extractOneCard(){
         if(cardsLeft>0){
             Card card=deck.get(0);

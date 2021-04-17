@@ -1,11 +1,11 @@
 
 
 public class Main {
-
+/*
         public static void main(String[] args) {
-            PlayerHand p1 = new PlayerHand();
+           // PlayerHand p1 = new PlayerHand(13);
             p1.makeDeck();
-            p1.setInitialNumber(5);
+            p1.setInitialNumber();
             p1.drawInitialCards();
             p1.printCards();
             p1.drawCard();
@@ -15,8 +15,8 @@ public class Main {
             p1.setTurn();
             System.out.println(p1.getTurn());
         }
+/*
 
-        /*
         public static void main(String[] args) {
 	Deck deck=new Deck();
 	deck.printDeck();
@@ -24,5 +24,9 @@ public class Main {
 	deck.printDeck();
     }
          */
+
+    public static void main(String[] args) {
+        GameRemastered g1=new GameRemastered(4);
+    }
 
 }
