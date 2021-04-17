@@ -16,18 +16,26 @@ class RoundCards {
         //System.out.println("Introducere reusita" + id +"   "+ carte.getNumber());
     }
 
-    public Card getById(int id){
+    /*public Card getById(int id){
         return playerID.get(id);
-    }
+    }*/
 
     public void putCard(RoundCards aux){
         for(int i=0;i<aux.size();++i){
-            this.putCard(aux.getCard(i),aux.getId(i));
+            cartiJos.add(aux.getCard(i));
+            playerID.add(aux.getId(i));
         }
     }
 
     public int getLength(){
         return cartiJos.size();
+    }
+
+    public void delete(){
+        while(cartiJos.size()>=1){
+            cartiJos.remove(0);
+            playerID.remove(0);
+        }
     }
 
     public void remove(int index){
@@ -63,5 +71,13 @@ class RoundCards {
         return cartiJos.size();
     }catch(StackOverflowError e){}
         return 0;
+    }
+
+    @Override
+    public String toString() {
+        return "RoundCards{" +
+                "cartiJos=" + cartiJos +
+                ", playerID=" + playerID +
+                '}';
     }
 }

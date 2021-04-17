@@ -80,6 +80,7 @@ public class GameRemastered {
                     i.addCard(cartiMasa.getCard(j));
                     cartiMasa.remove(j); j--;
                 }
+
                 for(int j=0;j<this.cartiMasa.getLength();j++){
                     i.addCard(this.cartiMasa.getCard(j));
                     this.cartiMasa.remove(j); j--;
@@ -111,11 +112,16 @@ public class GameRemastered {
 
 
 
-        for(int i=0;i<cartiMasa.getLength();i++){
+        for(int i=0;i<ultimeleCarti.getLength();i++){
            // System.out.println("101 "+ cartiMasa.getLength());
-            if(cartiMasa.getIndexValue(i)==valMax){
-                save[n]=cartiMasa.getId(i);
-                n++;
+            try {
+                if (ultimeleCarti.getIndexValue(i) == valMax) {
+                    save[n] = ultimeleCarti.getId(i);
+                    n++;
+                }
+            }
+            catch (ArrayIndexOutOfBoundsException e){
+                System.out.println("Eroare la 124");
             }
         }
 
@@ -131,8 +137,6 @@ public class GameRemastered {
         }
 
 
-
-        RoundCards playedCards = new RoundCards();
         int cardsDown;
 
         /**
@@ -164,7 +168,7 @@ public class GameRemastered {
          * ultima carte o va pune in playedCards
          * */
 
-
+        System.out.println(ultimeleCarti.toString());
         RoundCards ultimeleCarti2 = new RoundCards();
         for(Player i : jucatoriRazboi) {
             if (i.getManaJucator().getCards().size() >= cardsDown) {
@@ -172,30 +176,28 @@ public class GameRemastered {
                     cartiMasa.putCard(i.getMana(), i.getId());
                 }
                 ultimeleCarti2.putCard(i.getMana(), i.getId());
-                cartiMasa.putCard(i.getMana(), i.getId());
-            }
-            else if(i.getManaJucator().getCards().size() == 0){
-                ultimeleCarti2.putCard();
-                //ultimileCarti->UltimileCarti2
-            }
-            else
-                for (int j = 0; j < i.getManaJucator().getCards().size() -1; ++j) {
+            } else if (i.getManaJucator().getCards().size() == 0) {
+                for (int j = 0; j < ultimeleCarti.size(); ++j) {
+                    if (ultimeleCarti.getId(j) == i.getId()) {
+                        ultimeleCarti2.putCard(ultimeleCarti.getCard(j), i.getId());
+                        ultimeleCarti.remove(j);
+                    }
+                }
+            } else if (i.getManaJucator().getCards().size() != 0 && i.getManaJucator().getCards().size() < cardsDown) {
+                for (int j = 0; j < i.getManaJucator().getCards().size() - 1; ++j) {
                     cartiMasa.putCard(i.getMana(), i.getId());
                 }
-            ultimeleCarti2.putCard(i.getMana(), i.getId());
-            cartiMasa.putCard(i.getMana(), i.getId());
+                ultimeleCarti2.putCard(i.getMana(), i.getId());
+            }
         }
-    }
-
-
     /**folosim un vector de frecvecventa pentru a determina cartea maxima jucata*/
 
         int[] frecventa = new int[15];
         for(int i=0;i<15;i++) frecventa[i]=0;
 
-        for(int i=0;i<playedCards.getLength();i++){
+        for(int i=0;i<ultimeleCarti2.getLength();i++){
             try {
-                frecventa[playedCards.getIndexValue(i)]++;
+                frecventa[ultimeleCarti2.getIndexValue(i)]++;
             }catch(ArrayIndexOutOfBoundsException e){
                 System.out.println("Eroare la frecventa line 169");
             }
@@ -212,13 +214,13 @@ public class GameRemastered {
 
         /**verificăm dacă avem un câștigător sau dacă avem din nou un caz de egalitate*/
 
-        if(nrJuc==1) winRound(valMax,playedCards,jucatoriRazboi);
+        if(nrJuc==1) winRound(valMax,ultimeleCarti2,jucatoriRazboi);
         else{
             System.out.println("War nr2");
-            cartiMasa.putCard(playedCards);
+            cartiMasa.putCard(ultimeleCarti2);
             try {
 
-                war(ultimeleCarti,valWarMax,2);
+                war(ultimeleCarti2,valWarMax,nrJuc);
             }catch(StackOverflowError e){
                 System.out.println("Eroare la war");
             }
