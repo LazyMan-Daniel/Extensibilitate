@@ -80,7 +80,6 @@ public class GameRemastered {
                     i.addCard(cartiMasa.getCard(j));
                     cartiMasa.remove(j); j--;
                 }
-
                 for(int j=0;j<this.cartiMasa.getLength();j++){
                     i.addCard(this.cartiMasa.getCard(j));
                     this.cartiMasa.remove(j); j--;
@@ -112,16 +111,11 @@ public class GameRemastered {
 
 
 
-        for(int i=0;i<ultimeleCarti.getLength();i++){
+        for(int i=0;i<cartiMasa.getLength();i++){
            // System.out.println("101 "+ cartiMasa.getLength());
-            try {
-                if (ultimeleCarti.getIndexValue(i) == valMax) {
-                    save[n] = ultimeleCarti.getId(i);
-                    n++;
-                }
-            }
-            catch (ArrayIndexOutOfBoundsException e){
-                System.out.println("Eroare la 124");
+            if(cartiMasa.getIndexValue(i)==valMax){
+                save[n]=cartiMasa.getId(i);
+                n++;
             }
         }
 
@@ -137,6 +131,8 @@ public class GameRemastered {
         }
 
 
+
+        RoundCards playedCards = new RoundCards();
         int cardsDown;
 
         /**
@@ -168,6 +164,7 @@ public class GameRemastered {
          * ultima carte o va pune in playedCards
          * */
 
+
         System.out.println(ultimeleCarti.toString());
         RoundCards ultimeleCarti2 = new RoundCards();
         for(Player i : jucatoriRazboi) {
@@ -190,14 +187,17 @@ public class GameRemastered {
                 ultimeleCarti2.putCard(i.getMana(), i.getId());
             }
         }
+
+
+
     /**folosim un vector de frecvecventa pentru a determina cartea maxima jucata*/
 
         int[] frecventa = new int[15];
         for(int i=0;i<15;i++) frecventa[i]=0;
 
-        for(int i=0;i<ultimeleCarti2.getLength();i++){
+        for(int i=0;i<playedCards.getLength();i++){
             try {
-                frecventa[ultimeleCarti2.getIndexValue(i)]++;
+                frecventa[playedCards.getIndexValue(i)]++;
             }catch(ArrayIndexOutOfBoundsException e){
                 System.out.println("Eroare la frecventa line 169");
             }
@@ -214,13 +214,13 @@ public class GameRemastered {
 
         /**verificăm dacă avem un câștigător sau dacă avem din nou un caz de egalitate*/
 
-        if(nrJuc==1) winRound(valMax,ultimeleCarti2,jucatoriRazboi);
+        if(nrJuc==1) winRound(valMax,playedCards,jucatoriRazboi);
         else{
             System.out.println("War nr2");
-            cartiMasa.putCard(ultimeleCarti2);
+            cartiMasa.putCard(playedCards);
             try {
 
-                war(ultimeleCarti2,valWarMax,nrJuc);
+                war(ultimeleCarti,valWarMax,2);
             }catch(StackOverflowError e){
                 System.out.println("Eroare la war");
             }
