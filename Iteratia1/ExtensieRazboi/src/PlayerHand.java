@@ -4,7 +4,7 @@ import java.util.Random;
 
 public class PlayerHand {
 
-    private Deck deck;
+   // private Deck deck;
     private int noOfCards = 52; //carti ramase in pachet
     private int initialNumber; //numarul de carti pe care le primeste jucatorul la inceput
     private List<Card> playersCards; //cartile din mana jucatorului
@@ -13,8 +13,8 @@ public class PlayerHand {
 
     public PlayerHand(int initialNumber, Deck carti) {
         this.initialNumber = initialNumber;
-        deck=carti;
-        drawInitialCards();
+       // deck=carti;
+        drawInitialCards(carti);
 
            // System.out.println(playersCards);
 
@@ -52,7 +52,7 @@ public class PlayerHand {
         }
     }*/
 
-    public void drawInitialCards(){ //impartirea cartilor la inceput
+    public void drawInitialCards(Deck deck){ //impartirea cartilor la inceput
         int initialNumber = getInitialNumber();
         playersCards = new ArrayList<>();
         for(int i=0; i<initialNumber; i++) {
