@@ -1,3 +1,5 @@
+import java.util.List;
+
 public class Player {
     private String name;
     private int id, index;
@@ -27,6 +29,10 @@ public class Player {
 
     public Card getMana(){
         return  manaJucator.placeCard();
+    }
+
+    public PlayerHand getManaJucator() {
+        return manaJucator;
     }
 
     public String getName() {

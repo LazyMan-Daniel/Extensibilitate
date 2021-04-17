@@ -96,6 +96,7 @@ public class Deck {
         }
         return null;
     }
+
     public List<Card> extractCards(int number){
         List<Card> cards=new ArrayList<>();
         if(number>cardsLeft)number=cardsLeft;
@@ -105,5 +106,13 @@ public class Deck {
             cardsLeft--;
         }
         return cards;
+    }
+
+    public void remove(int index){
+        deck.remove(index);
+    }
+
+    public Card get(int index){
+        return deck.get(index);
     }
 }

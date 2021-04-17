@@ -15,6 +15,12 @@ class RoundCards {
         playerID.add(id);
     }
 
+    public void putCard(RoundCards aux){
+        for(int i=0;i<aux.size();++i){
+            this.putCard(aux.getCard(i),aux.getId(i));
+        }
+    }
+
     public int getLength(){
         return cartiJos.size();
     }
@@ -35,5 +41,9 @@ class RoundCards {
 
     public int getIndexValue(int index){
         return cartiJos.get(index).getNumber();
+    }
+
+    public int size(){
+        return cartiJos.size();
     }
 }

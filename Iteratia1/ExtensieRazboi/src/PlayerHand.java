@@ -19,6 +19,9 @@ public class PlayerHand {
            // System.out.println(playersCards);
 
     }
+    public List<Card> getCards(){
+        return playersCards;
+    }
 
     public int nrCarti(){
         return playersCards.size();
@@ -54,11 +57,11 @@ public class PlayerHand {
         playersCards = new ArrayList<>();
         for(int i=0; i<initialNumber; i++){
             playersCards.add(deck.extractOneCard());
-            /* Random rnd=new Random();
+            Random rnd=new Random();
             int index = rnd.nextInt(noOfCards);
             playersCards.add(deck.get(index)); //adauga in mana jucatorului cartea de pe poz index din pachet
             noOfCards--;
-            deck.remove(index); */
+            deck.remove(index);
         }
 
 
