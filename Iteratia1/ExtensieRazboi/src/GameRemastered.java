@@ -57,6 +57,9 @@ public class GameRemastered {
             }
         }
 
+        System.out.println("Dupa ce a castigat");
+        printPlayersCards();
+
     }
 
     public void winRound(int valMax, RoundCards playedCards, List<Player> jucatori) {
@@ -82,6 +85,8 @@ public class GameRemastered {
                 }
             }
         }
+        System.out.println("Dupa ce a castigat");
+        printPlayersCards();
 
     }
 
@@ -185,24 +190,22 @@ public class GameRemastered {
 
 
         for (int i=0;i<jucatoriRazboi.size();i++) {
-            if (jucatoriRazboi.get(i).getManaJucator().getCards().size() >= cardsDown) {
+            int numberOfCards=jucatoriRazboi.get(i).getManaJucator().getCards().size();
+            if (numberOfCards >= cardsDown) {
                 for (int j = 0; j < cardsDown - 1; ++j) {
                     cartiMasa.putCard(jucatoriRazboi.get(i).getMana(), jucatoriRazboi.get(i).getId());
 
                 }
                 playedCards.putCard(jucatoriRazboi.get(i).getMana(), jucatoriRazboi.get(i).getId());
-            } else if (jucatoriRazboi.get(i).getManaJucator().getCards().size() > 0) {
-                for (int j = 0; j < jucatoriRazboi.get(i).getManaJucator().getCards().size() - 1; ++j) {
+            } else if (numberOfCards > 0) {
+                for (int j = 0; j < numberOfCards - 1; ++j) {
                     cartiMasa.putCard(jucatoriRazboi.get(i).getMana(), jucatoriRazboi.get(i).getId());
                 }
                 playedCards.putCard(jucatoriRazboi.get(i).getMana(), jucatoriRazboi.get(i).getId());
             } else {
-                jucatori.remove(jucatoriRazboi.get(i));
-                jucatoriRazboi.remove(jucatoriRazboi.get(i));
-                i--;
                 int Max = 0;
                 for (int j = 0; j < cartiMasa.size(); j++)
-                    if (cartiMasa.getCard(j).getNumber() > Max)
+                    if (cartiMasa.getCard(j).getNumber() > Max &&cartiMasa.getId(j)!=jucatori.get(i).getId())
                         Max = cartiMasa.getCard(j).getNumber();
                 if (jucatoriRazboi.size() == 1) {
                     isWar2=false;
@@ -253,6 +256,7 @@ public class GameRemastered {
             for (Player i : jucatori) {  //jucatorii pun cartile pe masa in pachetul cartiMasa
                 cartiMasa.putCard(i.getMana(), i.getId());
             }
+            System.out.println("Dupa pe jucatorii au adaugat cartile:");
             printTableCards();
 
             int[] frecventa = new int[15]; //initializam frecventa cartilor
