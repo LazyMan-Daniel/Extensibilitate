@@ -86,7 +86,7 @@ public class Deck {
 
 
     public Card extractOneCard(){
-        if(cardsLeft>0){
+        if(this.deck.size()>0){
             Card card=deck.get(0);
             deck.remove(0);
             this.cardsLeft--;

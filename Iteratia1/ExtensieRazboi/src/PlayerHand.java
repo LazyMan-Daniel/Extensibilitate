@@ -4,7 +4,6 @@ import java.util.Random;
 
 public class PlayerHand {
 
-    private Deck deck;
     private int noOfCards = 52; //carti ramase in pachet
     private int initialNumber; //numarul de carti pe care le primeste jucatorul la inceput
     private List<Card> playersCards; //cartile din mana jucatorului
@@ -13,8 +12,7 @@ public class PlayerHand {
 
     public PlayerHand(int initialNumber, Deck carti) {
         this.initialNumber = initialNumber;
-        deck=carti;
-        drawInitialCards();
+        drawInitialCards(carti);
 
            // System.out.println(playersCards);
 
@@ -52,16 +50,12 @@ public class PlayerHand {
         }
     }*/
 
-    public void drawInitialCards(){ //impartirea cartilor la inceput
+    public void drawInitialCards(Deck deck){ //impartirea cartilor la inceput
         int initialNumber = getInitialNumber();
         playersCards = new ArrayList<>();
         for(int i=0; i<initialNumber; i++){
             playersCards.add(deck.extractOneCard());
-            Random rnd=new Random();
-            int index = rnd.nextInt(noOfCards);
-            playersCards.add(deck.get(index)); //adauga in mana jucatorului cartea de pe poz index din pachet
             noOfCards--;
-            deck.remove(index);
         }
 
 
@@ -73,7 +67,7 @@ public class PlayerHand {
 
 
     public Card placeCard(){  // trebuie adaptata functia in cazul in care jucatorul castiga mai multe carti, nu e random
-        if(playersCards.size()<1) {
+        if(playersCards.size()>0) {
             Card carte = playersCards.get(0);
             playersCards.remove(0);
 
@@ -108,6 +102,6 @@ public class PlayerHand {
     }
 
     public void printCards(){
-        System.out.println(playersCards.toString());
+        System.out.println("number of cards: "+playersCards.size()+"   values: "+playersCards.toString());
     }
 }
