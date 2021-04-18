@@ -14,6 +14,7 @@ public class GameRemastered {
     private RoundCards cartiMasa;
     private boolean notOver;
     public boolean isWar2=false;
+    public RoundCards playedCards;
 
     public GameRemastered(int nrPlayers) {
         int id = 0;
@@ -90,9 +91,9 @@ public class GameRemastered {
 
     }
 
-    public void war(int valMax, RoundCards playedCards) {
+    public void war(int valMax) {
 
-        //cei x jucatori trebuie sa joaca o runda noua
+        //cei x jucatori trebuie sa joace o runda noua
         //vor pune valMax carti jos, care vor fi adaugate in cartiMasa
         //ultimele x carti puse pe masa vor fi folosite in metoda de castig
         System.out.println("We are in war");
@@ -107,8 +108,8 @@ public class GameRemastered {
                 winRound(Max);
                 return;
 
-
         }
+        int count = 0;
         int n = 0;
         /**
          * salvam id-ul fiecarui player care ia parte la razboi in vectorul save[] ca sa-i putem gasi mai usor pe fiecare
@@ -116,17 +117,17 @@ public class GameRemastered {
          * */
         for (int i = 0; i < jucatori.size(); i++)
             save[i]=-5;
-        if(isWar2) {
 
+        if(isWar2) {
             for(int i=0;i<playedCards.getLength();i++)
                 if(playedCards.getCard(i).getNumber()==valMax)
                 {
                     save[n]=playedCards.getId(i);
                     n++;
-
                 }
             for(int i=0;i<playedCards.getLength();i++){
-                cartiMasa.putCard(playedCards.getCard(i),playedCards.getId(i) );
+                count = 1;
+                cartiMasa.putCard(playedCards.getCard(i),playedCards.getId(i));
             }
         }
         else
@@ -186,26 +187,26 @@ public class GameRemastered {
          * ultima carte o va pune in playedCards
          * */
 
-        cartiMasa = new RoundCards();
 
+        cartiMasa = new RoundCards();
 
         for (int i=0;i<jucatoriRazboi.size();i++) {
             int numberOfCards=jucatoriRazboi.get(i).getManaJucator().getCards().size();
             if (numberOfCards >= cardsDown) {
-                for (int j = 0; j < cardsDown - 1; ++j) {
+                for (int j = 0; j < cardsDown ; j++) {
                     cartiMasa.putCard(jucatoriRazboi.get(i).getMana(), jucatoriRazboi.get(i).getId());
-
                 }
                 playedCards.putCard(jucatoriRazboi.get(i).getMana(), jucatoriRazboi.get(i).getId());
             } else if (numberOfCards > 0) {
-                for (int j = 0; j < numberOfCards - 1; ++j) {
+                for (int j = 0; j < numberOfCards - 1; j++) {
                     cartiMasa.putCard(jucatoriRazboi.get(i).getMana(), jucatoriRazboi.get(i).getId());
                 }
                 playedCards.putCard(jucatoriRazboi.get(i).getMana(), jucatoriRazboi.get(i).getId());
-            } else {
+            }
+            else {
                 int Max = 0;
                 for (int j = 0; j < cartiMasa.size(); j++)
-                    if (cartiMasa.getCard(j).getNumber() > Max &&cartiMasa.getId(j)!=jucatori.get(i).getId())
+                    if (cartiMasa.getCard(j).getNumber() > Max && cartiMasa.getId(j)!=jucatori.get(i).getId())
                         Max = cartiMasa.getCard(j).getNumber();
                 if (jucatoriRazboi.size() == 1) {
                     isWar2=false;
@@ -214,6 +215,7 @@ public class GameRemastered {
                 }
             }
         }
+
         printPlayersCards();
         removePlayer();
         printTableCards();
@@ -242,7 +244,7 @@ public class GameRemastered {
         else {
             cartiMasa.putCard(playedCards);
             isWar2=true;
-            war(valWarMax,playedCards);
+            war(valWarMax);
         }
     }
 
@@ -280,9 +282,9 @@ public class GameRemastered {
 
             if (nrJuc == 1) winRound(valMax);
             else {
-                RoundCards playedCards=new RoundCards();
+                //RoundCards playedCards=new RoundCards();
                 isWar2=false;
-                war(valMax, playedCards);
+                war(valMax);
             }
 
             printPlayersCards();
