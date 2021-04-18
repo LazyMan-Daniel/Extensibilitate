@@ -63,6 +63,14 @@ public class Player {
         return isOutOfTheGame;
     }
 
+    @Override
+    public String toString() {
+        return "Player{" +
+                "id=" + id + "  nr carti: " + getNrCards()+
+                ", manaJucator=" + manaJucator.getCards()+
+                '}';
+    }
+
     public void setOutOfTheGame(boolean outOfTheGame) {
         isOutOfTheGame = outOfTheGame;
     }
