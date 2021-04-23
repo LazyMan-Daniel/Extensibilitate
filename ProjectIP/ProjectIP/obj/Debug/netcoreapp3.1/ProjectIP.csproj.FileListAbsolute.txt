@@ -1,0 +1,39 @@
+C:\Users\Victor\source\repos\ProjectIP\ProjectIP\bin\Debug\netcoreapp3.1\ProjectIP.exe
+C:\Users\Victor\source\repos\ProjectIP\ProjectIP\bin\Debug\netcoreapp3.1\ProjectIP.deps.json
+C:\Users\Victor\source\repos\ProjectIP\ProjectIP\bin\Debug\netcoreapp3.1\ProjectIP.runtimeconfig.json
+C:\Users\Victor\source\repos\ProjectIP\ProjectIP\bin\Debug\netcoreapp3.1\ProjectIP.runtimeconfig.dev.json
+C:\Users\Victor\source\repos\ProjectIP\ProjectIP\bin\Debug\netcoreapp3.1\ProjectIP.dll
+C:\Users\Victor\source\repos\ProjectIP\ProjectIP\bin\Debug\netcoreapp3.1\ProjectIP.pdb
+C:\Users\Victor\source\repos\ProjectIP\ProjectIP\obj\Debug\netcoreapp3.1\ProjectIP.csprojAssemblyReference.cache
+C:\Users\Victor\source\repos\ProjectIP\ProjectIP\obj\Debug\netcoreapp3.1\ProjectIP.AssemblyInfoInputs.cache
+C:\Users\Victor\source\repos\ProjectIP\ProjectIP\obj\Debug\netcoreapp3.1\ProjectIP.AssemblyInfo.cs
+C:\Users\Victor\source\repos\ProjectIP\ProjectIP\obj\Debug\netcoreapp3.1\ProjectIP.csproj.CoreCompileInputs.cache
+C:\Users\Victor\source\repos\ProjectIP\ProjectIP\obj\Debug\netcoreapp3.1\ProjectIP.dll
+C:\Users\Victor\source\repos\ProjectIP\ProjectIP\obj\Debug\netcoreapp3.1\ProjectIP.pdb
+C:\Users\Victor\source\repos\ProjectIP\ProjectIP\obj\Debug\netcoreapp3.1\ProjectIP.genruntimeconfig.cache
+D:\GITHUB\proiectIP\logica\ProjectIP\ProjectIP\bin\Debug\netcoreapp3.1\ProjectIP.exe
+D:\GITHUB\proiectIP\logica\ProjectIP\ProjectIP\bin\Debug\netcoreapp3.1\ProjectIP.deps.json
+D:\GITHUB\proiectIP\logica\ProjectIP\ProjectIP\bin\Debug\netcoreapp3.1\ProjectIP.runtimeconfig.json
+D:\GITHUB\proiectIP\logica\ProjectIP\ProjectIP\bin\Debug\netcoreapp3.1\ProjectIP.runtimeconfig.dev.json
+D:\GITHUB\proiectIP\logica\ProjectIP\ProjectIP\bin\Debug\netcoreapp3.1\ProjectIP.dll
+D:\GITHUB\proiectIP\logica\ProjectIP\ProjectIP\bin\Debug\netcoreapp3.1\ProjectIP.pdb
+D:\GITHUB\proiectIP\logica\ProjectIP\ProjectIP\obj\Debug\netcoreapp3.1\ProjectIP.csprojAssemblyReference.cache
+D:\GITHUB\proiectIP\logica\ProjectIP\ProjectIP\obj\Debug\netcoreapp3.1\ProjectIP.csproj.CoreCompileInputs.cache
+D:\GITHUB\proiectIP\logica\ProjectIP\ProjectIP\obj\Debug\netcoreapp3.1\ProjectIP.AssemblyInfoInputs.cache
+D:\GITHUB\proiectIP\logica\ProjectIP\ProjectIP\obj\Debug\netcoreapp3.1\ProjectIP.AssemblyInfo.cs
+D:\GITHUB\proiectIP\logica\ProjectIP\ProjectIP\obj\Debug\netcoreapp3.1\ProjectIP.dll
+D:\GITHUB\proiectIP\logica\ProjectIP\ProjectIP\obj\Debug\netcoreapp3.1\ProjectIP.pdb
+D:\GITHUB\proiectIP\logica\ProjectIP\ProjectIP\obj\Debug\netcoreapp3.1\ProjectIP.genruntimeconfig.cache
+D:\info 2 sem 2\IP-repo-ciudat\logica\ProjectIP\ProjectIP\bin\Debug\netcoreapp3.1\ProjectIP.exe
+D:\info 2 sem 2\IP-repo-ciudat\logica\ProjectIP\ProjectIP\bin\Debug\netcoreapp3.1\ProjectIP.deps.json
+D:\info 2 sem 2\IP-repo-ciudat\logica\ProjectIP\ProjectIP\bin\Debug\netcoreapp3.1\ProjectIP.runtimeconfig.json
+D:\info 2 sem 2\IP-repo-ciudat\logica\ProjectIP\ProjectIP\bin\Debug\netcoreapp3.1\ProjectIP.runtimeconfig.dev.json
+D:\info 2 sem 2\IP-repo-ciudat\logica\ProjectIP\ProjectIP\bin\Debug\netcoreapp3.1\ProjectIP.dll
+D:\info 2 sem 2\IP-repo-ciudat\logica\ProjectIP\ProjectIP\bin\Debug\netcoreapp3.1\ProjectIP.pdb
+D:\info 2 sem 2\IP-repo-ciudat\logica\ProjectIP\ProjectIP\obj\Debug\netcoreapp3.1\ProjectIP.csprojAssemblyReference.cache
+D:\info 2 sem 2\IP-repo-ciudat\logica\ProjectIP\ProjectIP\obj\Debug\netcoreapp3.1\ProjectIP.AssemblyInfoInputs.cache
+D:\info 2 sem 2\IP-repo-ciudat\logica\ProjectIP\ProjectIP\obj\Debug\netcoreapp3.1\ProjectIP.AssemblyInfo.cs
+D:\info 2 sem 2\IP-repo-ciudat\logica\ProjectIP\ProjectIP\obj\Debug\netcoreapp3.1\ProjectIP.csproj.CoreCompileInputs.cache
+D:\info 2 sem 2\IP-repo-ciudat\logica\ProjectIP\ProjectIP\obj\Debug\netcoreapp3.1\ProjectIP.dll
+D:\info 2 sem 2\IP-repo-ciudat\logica\ProjectIP\ProjectIP\obj\Debug\netcoreapp3.1\ProjectIP.pdb
+D:\info 2 sem 2\IP-repo-ciudat\logica\ProjectIP\ProjectIP\obj\Debug\netcoreapp3.1\ProjectIP.genruntimeconfig.cache
